@@ -28,7 +28,7 @@ public class FraudController {
 	FraudService fraudService;
 
 	@GetMapping(value = "/score", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CCFraudInfo> getTutorialById(@RequestParam(name = "cc", required = true) String ccNo,
+	public ResponseEntity<CCFraudInfo> getCCFraudScoreInfo(@RequestParam(name = "cc", required = true) String ccNo,
 			@RequestParam(name = "exp", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate expDate) {
 		try {
 			return new ResponseEntity<>(fraudService.getFraudInfo(ccNo, expDate), HttpStatus.OK);
