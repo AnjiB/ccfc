@@ -22,4 +22,6 @@ public class CCFraudInfo {
 	
 	private FraudProps fraudProps;
 	
+	private Error error;
+	
 }

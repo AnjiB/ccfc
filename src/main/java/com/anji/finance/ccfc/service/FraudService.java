@@ -31,11 +31,15 @@ public class FraudService {
 	@Autowired
 	private CcFraudScoreRepository ccFraudScoreRepository;
 
-	public CCFraudInfo getFraudInfo(String ccNumber, LocalDate expDate) {
+	public CCFraudInfo getFraudInfo(String ccNumber, LocalDate expDate) throws Exception {
 
 		CcInfo ccInfo = ccInfoRepository.findByCcNo(ccNumber);
 
 		CcIssuerInfo ccIssuerInfo = ccIssuerRepository.findByCcNo(ccNumber);
+		
+		if(ccInfo == null || ccIssuerInfo == null) {
+			throw new Exception("There is no credit with given card number. Please enter valid credit card");
+		}
 
 		CcFraudScoreInfo score = ccFraudScoreRepository.findByCcIdAndCcIssuerId(ccInfo.getId(),
 				ccIssuerInfo.getId());
