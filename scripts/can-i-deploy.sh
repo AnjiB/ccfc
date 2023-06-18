@@ -7,4 +7,4 @@ docker run --rm -v /${PWD}:/${PWD} -w ${PWD} \
 	  --version 1.0.0 \
 	  --to-environment production \
 	  --retry-while-unknown 6 \
-	  --retry-interval 10 
+	  --retry-interval 10
