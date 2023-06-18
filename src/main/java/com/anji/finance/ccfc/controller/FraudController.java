@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.anji.finance.ccfc.dto.CCFraudInfo;
 import com.anji.finance.ccfc.service.FraudService;
-import com.anji.finance.ccfc.dto.Error;
 
 /**
  * @author anjiboddupally
@@ -34,8 +33,7 @@ public class FraudController {
 		try {
 			return new ResponseEntity<>(fraudService.getFraudInfo(ccNo, expDate), HttpStatus.OK);
 		} catch (Exception e) {
-			Error err = Error.builder().message(e.getMessage()).build();
-			CCFraudInfo ccr = CCFraudInfo.builder().error(err).build();
+			CCFraudInfo ccr = CCFraudInfo.builder().error(e.getMessage()).build();
 			return new ResponseEntity<CCFraudInfo>(ccr, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
