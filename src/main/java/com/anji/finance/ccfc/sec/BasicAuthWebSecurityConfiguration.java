@@ -32,13 +32,17 @@ public class BasicAuthWebSecurityConfiguration {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/fraudcheck")
+			.antMatchers("/fraudcheck", "/h2-ui/**")
 			.permitAll()
 			.anyRequest()
 			.authenticated()
 			.and()
 			.httpBasic()
-			.authenticationEntryPoint(authenticationEntryPoint);
+			.authenticationEntryPoint(authenticationEntryPoint)
+			.and()
+			.csrf().disable()
+			.headers().frameOptions().disable();
+		
 		return http.build();
 	}
 
